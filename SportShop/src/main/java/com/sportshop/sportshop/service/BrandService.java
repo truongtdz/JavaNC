@@ -2,22 +2,33 @@ package com.sportshop.sportshop.service;
 
 import com.sportshop.sportshop.dto.request.BrandRequest;
 import com.sportshop.sportshop.dto.response.BrandResponse;
+import com.sportshop.sportshop.enums.StatusEnum;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 
 @Service
 public interface BrandService {
+    Page<BrandResponse> getAllPaginated(
+            int page, int size,
+            String sortField, String sortDir,
+            String name, StatusEnum status
+    );
 
-    // View all Brand
-    public List<BrandResponse> getAllBrand();
+    BrandResponse getBrandById(Long brandId);
 
-    // View By Id
-    public BrandResponse getBrandById(Long brandId);
+    BrandResponse createBrand(BrandRequest brandRequest, MultipartFile file);
 
-    // Create Brand
-    public void createBrand(BrandRequest request);
+    BrandResponse updateBrand(Long brandId, BrandRequest brandRequest, MultipartFile file);
 
-    // Delete Brand
-    public void deleteBrand(Long brandId);
+    void softDeleteBrand(Long brandId);
+
+    void restoreBrand(Long brandId);
+
+    void deleteBrand(Long brandId);
+
+    void updateImage(Long brandId, String image);
+
+    void deleteImage(Long brandId);
 }

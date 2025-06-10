@@ -8,6 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}" />
     <style>
       :root {
         --primary-gradient: linear-gradient(45deg, #4b6cb7, #182848);
@@ -32,60 +33,6 @@
       .container {
         display: flex;
         min-height: 100vh;
-      }
-
-      /* Sidebar styles */
-      nav {
-        width: 250px;
-        background: var(--sidebar-gradient);
-        color: white;
-        padding: 20px 0;
-        height: 100vh;
-        position: fixed;
-        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
-      }
-
-      nav .logo {
-        text-align: center;
-        padding: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 20px;
-      }
-
-      nav .logo img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        border: 3px solid rgba(255, 255, 255, 0.3);
-      }
-
-      nav a {
-        display: flex;
-        padding: 15px 25px;
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        align-items: center;
-        border-left: 4px solid transparent;
-      }
-
-      nav a i {
-        margin-right: 10px;
-        width: 20px;
-        font-size: 1.2em;
-      }
-
-      nav a:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: white;
-        border-left: 4px solid #4b6cb7;
-        padding-left: 30px;
-      }
-
-      .submenu {
-        background: rgba(0, 0, 0, 0.15);
-        display: none;
       }
 
       /* Main content styles */
@@ -379,24 +326,42 @@
   </head>
   <body>
     <div class="container">
-      <!-- Sidebar -->
-      <nav>
-        <div class="logo">
-          <img th:src="@{/image/logo.jpg}" alt="Logo" />
-        </div>
-        <a href="/admin" class="nav-link">
-          <i class="fas fa-home"></i><span>Trang Quản Trị</span>
-        </a>
-        <a href="/admin/user" class="nav-link">
-          <i class="fas fa-users"></i><span>Quản Lý Người Dùng</span>
-        </a>
-        <a href="/admin/product" class="nav-link">
-          <i class="fas fa-box"></i><span>Quản Lý Sản Phẩm</span>
-        </a>
-        <a href="/admin/order" class="nav-link">
-          <i class="fas fa-shopping-cart"></i><span>Quản Lý Đơn Hàng</span>
-        </a>
-      </nav>
+        <!-- Sidebar -->
+        <nav>
+            <div class="logo">
+                <img th:src="@{/image/logo.jpg}" alt="Logo" />
+            </div>
+            <a href="/admin" class="nav-link">
+                <i class="fas fa-home"></i><span>Trang Quản Trị</span>
+            </a>
+            <a href="/admin/user" class="nav-link">
+                <i class="fas fa-users"></i><span>Quản Lý Người Dùng</span>
+            </a>
+
+            <!-- Product Management with Dropdown -->
+            <div class="product-menu">
+                <a href="#" class="nav-link" onclick="toggleProductMenu(event)">
+                    <div>
+                        <i class="fas fa-box"></i><span>Quản Lý Sản Phẩm</span>
+                    </div>
+                </a>
+                <div class="submenu" id="productSubmenu">
+                    <a href="/admin/product" class="nav-link">
+                        <i class="fas fa-cube"></i><span>Sản Phẩm</span>
+                    </a>
+                    <a href="/admin/category" class="nav-link">
+                        <i class="fas fa-tags"></i><span>Danh Mục</span>
+                    </a>
+                    <a href="/admin/brand" class="nav-link">
+                        <i class="fas fa-certificate"></i><span>Thương Hiệu</span>
+                    </a>
+                </div>
+            </div>
+
+            <a href="/admin/order" class="nav-link">
+                <i class="fas fa-shopping-cart"></i><span>Quản Lý Đơn Hàng</span>
+            </a>
+        </nav>
 
       <!-- Main content -->
       <div class="main-content">
@@ -531,5 +496,6 @@
         // Animation sẽ tự chạy thông qua CSS
       });
     </script>
+    <script th:src="@{/js/productManagement.js}"></script>
   </body>
 </html>

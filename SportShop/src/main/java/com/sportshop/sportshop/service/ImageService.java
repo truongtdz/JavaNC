@@ -14,6 +14,8 @@ public interface ImageService {
     // Create new Image
     void createImage(MultipartFile file, Long productId);
 
+    String createImage(MultipartFile file);
+
     void createImage(List<MultipartFile> files, Long productId);
 
     // Delete Image

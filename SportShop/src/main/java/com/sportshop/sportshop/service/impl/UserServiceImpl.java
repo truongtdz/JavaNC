@@ -238,6 +238,7 @@ public class UserServiceImpl implements UserService {
             
             ProductEntity product = cart.getProduct();
             product.setQuantity(product.getQuantity() - cart.getQuantity());
+            product.setQuantitySell(product.getQuantitySell() + cart.getQuantity());
             productRepository.save(product);
         }
 

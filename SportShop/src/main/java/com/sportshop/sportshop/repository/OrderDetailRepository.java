@@ -10,4 +10,6 @@ import com.sportshop.sportshop.entity.OrderDetailEntity;
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetailEntity, Long> {
     List<OrderDetailEntity> findByOrderId(Long orderId);
+
+    List<OrderDetailEntity> findByProductId(Long productId);
 }

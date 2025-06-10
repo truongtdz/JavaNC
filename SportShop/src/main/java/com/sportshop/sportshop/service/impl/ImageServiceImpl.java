@@ -54,6 +54,20 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public String createImage(MultipartFile file) {
+        try{
+            ImageEntity newImage = new ImageEntity();
+            String link = cloudinaryService.uploadFile(file);
+            newImage.setImageLink(link);
+            imageRepository.save(newImage);
+            return link;
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    @Override
     public void createImage(List<MultipartFile> files, Long productId) {
         for (MultipartFile item : files){
             if(!item.isEmpty() && item != null){

@@ -2,22 +2,34 @@ package com.sportshop.sportshop.service;
 
 import com.sportshop.sportshop.dto.request.CategoryRequest;
 import com.sportshop.sportshop.dto.response.CategoryResponse;
+import com.sportshop.sportshop.enums.StatusEnum;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public interface CategoryService {
 
-    // View all category
-    public List<CategoryResponse> getAllCategory();
+    Page<CategoryResponse> getAllCategoriesPaginated(
+            int page, int size,
+            String sortField, String sortDir,
+            String name, StatusEnum status
+    );
 
-    // View By Id
-    public CategoryResponse getCategoryById(Long categoryId);
+    CategoryResponse getCategoryById(Long categoryId);
 
-    // Create Category
-    public void createCategory(CategoryRequest request);
+    CategoryResponse createCategory(CategoryRequest categoryRequest,  MultipartFile file);
 
-    // Delete Category
-    public void deleteCategory(Long categoryId);
+    CategoryResponse updateCategory(Long categoryId, CategoryRequest categoryRequest, MultipartFile file);
+
+    void softDeleteCategory(Long categoryId);
+
+    void restoreCategory(Long categoryId);
+
+    void deleteCategory(Long categoryId);
+
+    void updateImage(Long categoryId, String image);
+
+    void deleteImage(Long categoryId);
 }

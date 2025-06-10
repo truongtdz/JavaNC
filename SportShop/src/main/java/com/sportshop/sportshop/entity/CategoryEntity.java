@@ -1,5 +1,6 @@
 package com.sportshop.sportshop.entity;
 
+import com.sportshop.sportshop.enums.StatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -20,6 +21,13 @@ public class CategoryEntity {
 
     @Column(name = "name_category")
     String name;
+
+    @Column(name = "image")
+    String image;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    StatusEnum status;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<ProductEntity> products;

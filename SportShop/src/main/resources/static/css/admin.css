@@ -25,61 +25,12 @@
     display: flex;
     min-height: 100vh;
   }
-  
-  /* ========== SIDEBAR STYLES ========== */
-  nav {
-    width: 250px;
-    background: var(--sidebar-gradient);
-    color: white;
-    padding: 20px 0;
-    height: 100vh;
-    position: fixed;
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  nav .logo {
-    text-align: center;
+
+/* Content area for demo */
+.content {
+    margin-left: 250px;
     padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  nav .logo img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    border: 3px solid rgba(255, 255, 255, 0.3);
-  }
-  
-  nav a {
-    display: flex;
-    padding: 15px 25px;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    align-items: center;
-    border-left: 4px solid transparent;
-  }
-  
-  nav a i {
-    margin-right: 10px;
-    width: 20px;
-    font-size: 1.2em;
-  }
-  
-  nav a:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    border-left: 4px solid #4b6cb7;
-    padding-left: 30px;
-  }
-  
-  .submenu {
-    background: rgba(0, 0, 0, 0.15);
-    display: none;
-  }
-  
+}
   /* ========== MAIN CONTENT STYLES ========== */
   .main-content {
     flex: 1;

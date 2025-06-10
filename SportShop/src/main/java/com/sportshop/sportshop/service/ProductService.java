@@ -1,41 +1,40 @@
-    package com.sportshop.sportshop.service;
+package com.sportshop.sportshop.service;
 
-    import com.sportshop.sportshop.dto.request.ProductRequest;
-    import com.sportshop.sportshop.dto.request.SearchRequest;
-    import com.sportshop.sportshop.dto.response.ProductResponse;
+import com.sportshop.sportshop.dto.request.ProductRequest;
+import com.sportshop.sportshop.dto.request.SearchRequest;
+import com.sportshop.sportshop.dto.response.ProductResponse;
 
-    import org.springframework.data.domain.Page;
-    import org.springframework.stereotype.Service;
+import com.sportshop.sportshop.enums.StatusEnum;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
-    import java.util.List;
+import java.util.List;
 
-    @Service
-    public interface ProductService {
-        // Count product
-        public int countProduct();
+@Service
+public interface ProductService {
+    int countProduct();
 
-        // View all product
-        Page<ProductResponse> getAllProductsPaginated(int page, int size, String sortField, String sortDir);
+    Page<ProductResponse> getAllProductsPaginated(
+            int page, int size,
+            String sortField, String sortDir,
+            String name, StatusEnum status
+    );
 
-        // View list product sale
-        public List<ProductResponse> getProductSale();
+    ProductResponse getProductById(Long productId);
 
-        // View list product the newest
-        public List<ProductResponse> getProductNewest();
+    ProductResponse createProduct(ProductRequest productRequest);
 
-        // View product by ID
-        public ProductResponse getProductById(Long productId);
+    ProductResponse updateProduct(Long productId, ProductRequest productRequest);
 
-        // Create product
-        public ProductResponse createProduct(ProductRequest productRequest);
+    void softDeleteProduct(Long productId);
 
-        // Update Product
-        public ProductResponse updateProduct(Long productId, ProductRequest productRequest);
+    void restoreProduct(Long productId);
 
-        // Delete Product
-        public void deleteProduct(Long productId);
+    void deleteProduct(Long productId);
 
-        // Search Product
-        Page<ProductResponse> searchProduct(SearchRequest request, int page, int size);
+    Page<ProductResponse> searchProduct(SearchRequest request, int page, int size);
 
-    }
+    List<ProductResponse> getProductSale();
+
+    List<ProductResponse> getProductNewest();
+}
